@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   SearchBarStyled,
@@ -8,46 +8,39 @@ import {
   FormInputStyled,
 } from './Searchbar.styled';
 
-class Searchbar extends Component {
-  state = {
-    temporaryWord: '',
+const Searchbar = ({ onSubmit }) => {
+  const [temporaryWord, setTemporaryWord] = useState('');
+
+  const handleChange = e => {
+    setTemporaryWord(e.currentTarget.value);
   };
 
-  handleChange = e => {
-    this.setState({
-      temporaryWord: e.currentTarget.value,
-    });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    console.log(e);
-    this.props.onSubmit(this.state.temporaryWord);
-    this.setState({ temporaryWord: '' });
+    onSubmit(temporaryWord);
+    setTemporaryWord('');
     e.currentTarget.reset();
   };
 
-  render() {
-    return (
-      <SearchBarStyled>
-        <FormStyled onSubmit={this.handleSubmit}>
-          <FormButtonStyled type="submit">
-            <FormButtonLabelStyled>Search</FormButtonLabelStyled>
-          </FormButtonStyled>
+  return (
+    <SearchBarStyled>
+      <FormStyled onSubmit={handleSubmit}>
+        <FormButtonStyled type="submit">
+          <FormButtonLabelStyled>Search</FormButtonLabelStyled>
+        </FormButtonStyled>
 
-          <FormInputStyled
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-            onChange={this.handleChange}
-            value={this.state.temporaryWord}
-          />
-        </FormStyled>
-      </SearchBarStyled>
-    );
-  }
-}
+        <FormInputStyled
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          onChange={handleChange}
+          value={temporaryWord}
+        />
+      </FormStyled>
+    </SearchBarStyled>
+  );
+};
 
 export default Searchbar;
 

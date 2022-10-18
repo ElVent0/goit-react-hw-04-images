@@ -1,40 +1,36 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ModalStyled, ModalStyledContent } from './Modal.styled';
 
-class Modal extends Component {
-  componentDidMount() {
+const Modal = ({ bigUrl, handleCloseModal }) => {
+  useEffect(() => {
     window.addEventListener('keydown', e => {
       if (e.code === 'Escape') {
-        this.props.handleCloseModal();
+        handleCloseModal();
       }
     });
-  }
 
-  async componentWillUnmount() {
-    window.removeEventListener('keydown', e => {
+    return window.removeEventListener('keydown', e => {
       if (e.code === 'Escape') {
-        this.setState({ bigUrl: '' });
+        handleCloseModal();
       }
     });
-  }
+  }, [handleCloseModal]);
 
-  onCloseModal = e => {
+  const onCloseModal = e => {
     if (e.currentTarget === e.target) {
-      this.props.handleCloseModal();
+      handleCloseModal();
     }
   };
 
-  render() {
-    return (
-      <ModalStyled onClick={this.onCloseModal}>
-        <ModalStyledContent>
-          <img src={this.props.bigUrl} alt="" width="100%" />
-        </ModalStyledContent>
-      </ModalStyled>
-    );
-  }
-}
+  return (
+    <ModalStyled onClick={onCloseModal}>
+      <ModalStyledContent>
+        <img src={bigUrl} alt="" width="100%" />
+      </ModalStyledContent>
+    </ModalStyled>
+  );
+};
 
 export default Modal;
 
