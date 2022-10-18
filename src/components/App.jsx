@@ -32,7 +32,7 @@ export const App = () => {
   // }, []);
 
   useEffect(() => {
-    if (word === '' && page === 1) {
+    if (word === '') {
       return;
       //   const a = async () => {
       //     try {
