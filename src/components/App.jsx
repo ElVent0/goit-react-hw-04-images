@@ -33,34 +33,34 @@ export const App = () => {
 
   useEffect(() => {
     if (word === '' && page === 1) {
-      // return;
-      const a = async () => {
-        try {
-          setLoading(true);
-          const parsedDataUpdate = await getData(word, page);
-          console.log(parsedDataUpdate);
-          setPictures(() => [...parsedDataUpdate]);
-        } catch (e) {
-          console.log(e);
-        } finally {
-          setLoading(false);
-        }
-      };
-      a();
-    } else if (word === '' && page !== 1) {
-      const a = async () => {
-        try {
-          setLoading(true);
-          const parsedDataUpdate = await getData(word, page);
-          console.log(parsedDataUpdate);
-          setPictures(prevState => [...prevState, ...parsedDataUpdate]);
-        } catch (e) {
-          console.log(e);
-        } finally {
-          setLoading(false);
-        }
-      };
-      a();
+      return;
+      //   const a = async () => {
+      //     try {
+      //       setLoading(true);
+      //       const parsedDataUpdate = await getData(word, page);
+      //       console.log(parsedDataUpdate);
+      //       setPictures(() => [...parsedDataUpdate]);
+      //     } catch (e) {
+      //       console.log(e);
+      //     } finally {
+      //       setLoading(false);
+      //     }
+      //   };
+      //   a();
+      // } else if (word === '' && page !== 1) {
+      //   const a = async () => {
+      //     try {
+      //       setLoading(true);
+      //       const parsedDataUpdate = await getData(word, page);
+      //       console.log(parsedDataUpdate);
+      //       setPictures(prevState => [...prevState, ...parsedDataUpdate]);
+      //     } catch (e) {
+      //       console.log(e);
+      //     } finally {
+      //       setLoading(false);
+      //     }
+      //   };
+      //   a();
     }
     const a = async () => {
       try {
