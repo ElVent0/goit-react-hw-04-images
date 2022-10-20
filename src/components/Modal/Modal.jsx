@@ -10,11 +10,13 @@ const Modal = ({ bigUrl, handleCloseModal }) => {
       }
     });
 
-    return window.removeEventListener('keydown', e => {
-      if (e.code === 'Escape') {
-        handleCloseModal();
-      }
-    });
+    return () => {
+      window.removeEventListener('keydown', e => {
+        if (e.code === 'Escape') {
+          handleCloseModal();
+        }
+      });
+    };
   }, [handleCloseModal]);
 
   const onCloseModal = e => {

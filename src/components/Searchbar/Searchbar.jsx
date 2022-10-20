@@ -19,7 +19,6 @@ const Searchbar = ({ onSubmit }) => {
     e.preventDefault();
     onSubmit(temporaryWord);
     setTemporaryWord('');
-    e.currentTarget.reset();
   };
 
   return (

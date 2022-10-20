@@ -92,10 +92,8 @@ export const App = () => {
     <>
       <Searchbar onSubmit={handlerSubmit} />
       {loading && <Loader />}
-      {!loading && (
-        <ImageGallery dataArray={pictures} onOpenModal={onOpenModal} />
-      )}
-      {pictures && <Button onLoadMore={handleLoadMore} />}
+      <ImageGallery dataArray={pictures} onOpenModal={onOpenModal} />
+      {pictures.length > 0 && <Button onLoadMore={handleLoadMore} />}
       {bigUrl && <Modal bigUrl={bigUrl} handleCloseModal={handleCloseModal} />}
     </>
   );
